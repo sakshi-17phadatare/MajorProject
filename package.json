@@ -1,5 +1,5 @@
 {
-   "engones":{
+   "engines":{
     "node":"20.18.0"
   },
   "name": "wanderlust",
@@ -8,6 +8,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
