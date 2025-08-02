@@ -24,8 +24,11 @@ router.get("/new", isLoggedIn, listingController.renderNewForm);
 
 
 router.get("/category/:category", async (req, res) => {
+    
     const category = req.params.category;
-    const listings = await Listing.find({ category: category });
+    const regex = new RegExp(`^${category}$`, 'i');
+
+    const listings = await Listing.find({ category: regex });
     
     res.render("./listings/category", { listings, category });
 });
@@ -62,7 +65,7 @@ wrapAsync( listingController.renderUpdateForm)
 )
 .delete(isLoggedIn,isOwner, wrapAsync(listingController.renderDelete));
 
-    //Edit ROute
+   
     router.get("/:id/edit",isLoggedIn,isOwner, wrapAsync(listingController.editListing));
 module.exports = router;
 

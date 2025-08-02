@@ -37,6 +37,18 @@ const listingSchema = new Schema({
  
     },
   },
+  category:{
+  type:String,
+  enum:["Trending", "Rooms", "Iconic Cities", "Mountains", "Castles", "Amazing Pools", "Camping", "Farms", "Arctic", "Domes"]
+
+}
 });
+
+ listingSchema.post("findOneAndDelete", async(listing) =>{
+    if (listing){
+      await Review.deleteMany({_id:{$in: listing.reviews}});
+    }
+  });
+  
 const Listing = mongoose.model("Listing", listingSchema);
 module.exports = Listing;
